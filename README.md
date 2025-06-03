@@ -30,7 +30,7 @@ app/
 │       └── ContactRepository.php
 </pre>
 
-<h3>Démarches de mise en place</3>
+<h3>Démarches de mise en place</h3>
 <u>1. Interface Repository</u>
 
 <pre>
