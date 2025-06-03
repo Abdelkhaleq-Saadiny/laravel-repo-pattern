@@ -15,7 +15,7 @@ Repository : gère l’accès aux données (Eloquent, API, etc.)
 Model : entité ORM
 
 <h3>Structure des dossiers</h3>
-
+<pre>
 app/
 ├── Http/Controllers/
 │   └── ContactController.php
@@ -28,3 +28,4 @@ app/
 │   │   └── ContactRepository.php
 │   └── Api/
 │       └── ContactRepository.php
+</pre>
