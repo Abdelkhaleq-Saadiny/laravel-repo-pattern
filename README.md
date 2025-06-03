@@ -29,3 +29,66 @@ app/
 │   └── Api/
 │       └── ContactRepository.php
 </pre>
+
+<h3>Démarches de mise en place</3>
+<u>1. Interface Repository</u>
+
+<pre>
+namespace App\Repositories\Interfaces;
+
+interface ContactRepositoryInterface {
+    public function all();
+}
+</pre>
+
+<u>2. Implémentation Eloquent</u>
+
+<pre>
+namespace App\Repositories\Eloquent;
+
+use App\Models\Contact;
+use App\Repositories\Interfaces\ContactRepositoryInterface;
+
+class ContactRepository implements ContactRepositoryInterface {
+    public function all() {
+        return Contact::all();
+    }
+}
+</pre>
+
+<u>3. Service</u>
+<pre>
+namespace App\Services;
+
+use App\Repositories\Interfaces\ContactRepositoryInterface;
+
+class ContactService {
+    public function __construct(
+        protected ContactRepositoryInterface $contactRepository
+    ) {}
+
+    public function getAll() {
+        return $this->contactRepository->all();
+    }
+}
+</pre>
+
+<u>4. Contrôleur</u>
+
+<pre>
+namespace App\Http\Controllers;
+
+use App\Services\ContactService;
+
+class ContactController extends Controller {
+    public function __construct(
+        protected ContactService $contactService
+    ) {}
+
+    public function index() {
+        return view('index', [
+            'contacts' => $this->contactService->getAll(),
+        ]);
+    }
+}
+</pre>
